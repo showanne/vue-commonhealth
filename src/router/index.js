@@ -1,11 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import SwiperView from '../views/SwiperView.vue'
+import BannerView from '../views/BannerView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/swiper',
+    name: 'swiper',
+    component: SwiperView
+  },
+  {
+    path: '/banner',
+    name: 'banner',
+    component: BannerView
   },
   {
     path: '/about',

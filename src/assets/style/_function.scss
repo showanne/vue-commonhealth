@@ -1,0 +1,110 @@
+// unit 內建函式判斷有無 px， px to rem
+@function rem($px) {
+  @if (unit($px) == 'px') {
+    @return calc($px / 16px)rem;
+  } @else {
+    @return calc($px / 16)rem;
+  }
+}
+
+// 計算行高
+@function lineHeight($fontSize, $lineHeight) {
+  @return calc($lineHeight / $fontSize);
+}
+
+// 計算行高
+// $lineHeightLevel: 1.9;
+// @function lineHeight($fontSize) {
+//   @return ceil($fontSize * $lineHeightLevel);
+// }
+
+// 計算字體大小
+$baseFontSize: 16px;
+$size: 1px;
+@function fontSize($level: 1) {
+  // @return $baseFontSize + $size * $level;
+  // round 四捨五入
+  @return $baseFontSize + $size * round($level);
+}
+
+@mixin color($bg, $text) {
+  background-color: $bg;
+  color: $text;
+}
+@mixin size($w,$h:$w) {
+  width: $w;
+  height: $h;
+}
+
+// $main 主軸, $cross 次軸
+@mixin flex($main, $cross:$main) {
+  display: flex;
+  justify-content: $main;
+  align-items: $cross;
+}
+@mixin padding($pt, $pr:$pt, $pb:$pt, $pl:$pr) {
+  padding-top: $pt;
+  padding-right: $pr;
+  padding-bottom: $pb;
+  padding-left: $pl;
+}
+@mixin margin($mt, $mr:$mt, $mb:$mt, $ml:$mr) {
+  margin-top: $mt;
+  margin-right: $mr;
+  margin-bottom: $mb;
+  margin-left: $ml;
+}
+
+@mixin spacing($padding, $margin) {
+  padding: $padding;
+  margin: $margin;
+}
+
+@mixin btn-set($bgColor) {
+  & {
+    background-color: $bgColor;
+  }
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    @if $bgColor== #000 {
+      background-color: lighten($color: $bgColor, $amount: 10%);
+    } @else {
+      background-color: darken($color: $bgColor, $amount: 10%);
+    }
+  }
+  // 所有狀態別
+  // &:hover {}
+  // &:active {}
+  // &:visited {}
+  // &:focus,
+  // &.focus {
+  // }
+  // &.disabled,
+  // &:disabled {
+  // }
+  // &:not(:disabled):not(.disabled):active,
+  // &:not(:disabled):not(.disabled).active {
+  //   &:focus {
+  //   }
+  // }
+}
+@mixin link-set($color) {
+  & {
+    color: $color;
+  }
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    @if $color== #000 {
+      color: lighten($color: $color, $amount: 10%);
+    } @else {
+      color: darken($color: $color, $amount: 10%);
+    }
+  }
+}
+
+ // @mixin 用 @include 引用，可用 null 來代替未設定的值，參數沒有使用不能省略
+//  @include box(100px, 90px, null);

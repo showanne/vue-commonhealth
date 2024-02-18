@@ -1,0 +1,19 @@
+// Noto Sans TC
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+
+// @import 'node_modules/bootstrap/scss/functions.scss';
+@import 'node_modules/bootstrap/scss/functions.scss';
+@import './_function';
+@import './_variables';
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap/scss/mixins.scss';
+@import './_component'; 
+@import './_index';
+
+// // 定義變數預設值
+// $body-bg : #000 ;
+//  $body-color : #111 ;
+
+// // 然後匯入 Bootstrap 和 BootstrapVue SCSS 檔案（順序很重要）
+// @import  'node_modules/bootstrap/scss/bootstrap.scss' ;
+// @import  'node_modules/bootstrap-vue/src/index.scss' ;

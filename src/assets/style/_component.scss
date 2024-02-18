@@ -1,0 +1,130 @@
+// variable
+$h-nav: 61px;
+$h-nav-md: 93px;
+
+html {
+  scroll-behavior: smooth;
+}
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// header
+#header {
+  height: $h-nav;
+  @include media-breakpoint-up(md) {
+    height: $h-nav-md;
+  }
+  // 相鄰的下一區塊位置調整
+  & + * {
+    margin-top: $h-nav;
+    @include media-breakpoint-up(md) {
+      margin-top: $h-nav-md;
+    }
+  }
+  .navbar {
+    &-brand {
+      img {
+        height: 29px;
+        @include media-breakpoint-up(md) {
+          height: 48px;
+        }
+      }
+    }
+    &-collapse {}
+    &-toggler {
+      border-width: 0;
+      .menu {
+        @include size(50px);
+        position: relative;
+      }
+      .line {
+        position: absolute;
+        @include size(33px, 3.5px);
+        background: $dark;
+        border-radius: 10px;
+        transform: translate(-50%, -50%);
+        transition: all cubic-bezier(0.26, 0.1, 0.27, 1.55) 0.3s;
+      }
+      .top {
+        transform: rotate(45deg);
+        top: 48%;
+        left: 18%;
+      }
+      .middle {
+        transform: translateX(-200px);
+        top: 45%;
+        left: 18%;
+      }
+      .bottom  {
+        transform: rotate(-45deg);
+        top: 48%;
+        left: 18%;
+      }
+      &.collapsed {
+        .top {
+          transform: unset;
+          top: 25%;
+          left: 18%;
+        }
+        .middle {
+          transform: unset;
+          top: 45%;
+          left: 18%;
+        }
+        .bottom {
+          transform: unset;
+          top: 65%;
+          left: 18%;
+        }
+      }
+    }
+    &-nav {}
+
+  }
+  @include media-breakpoint-down(md) {
+    &.hide {
+      // top: -60px;
+      transform: all 1s ease-in;
+      .hide {
+        display: none;
+        transform: translateY(-100px);
+      }
+    }
+  }
+}
+
+// footer
+footer {
+
+}
+
+// scrollTop
+.scrollTop {
+  display: none; // 初始是不見的，之後的顯示和隱藏由 script 控制
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  border-radius: 50%;
+  &:hover {
+    transition: .5s;
+    filter: drop-shadow(2px 2px 5px darken($color: $info, $amount: 1));
+  }
+  img {
+    max-width: 70%;
+  }
+  @include media-breakpoint-up(sm) {
+    padding: 1rem;
+    img {
+      max-width: 100%;
+    }
+  }
+}

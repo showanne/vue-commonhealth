@@ -1,6 +1,6 @@
 <template>
   <!-- header -->
-  <nav id="header" class="navbar navbar-expand-xl navbar-light bg-white fixed-top" :class="{ 'hide': isHidden }">
+  <nav id="header" class="navbar navbar-light bg-white fixed-top" :class="{ 'hide': isHidden }">
     <div class="container">
       <!-- 選單 -->
       <button type="button" class="navbar-toggler collapsed" :class="{ 'hide': isHidden }" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,44 +12,11 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="nav">
         <div class="navbar-nav">
-          <!-- nav-link + active 一般選單的當前頁面效果 -->
-          <!-- nav-link、dropdown-item + active 下拉選單的當前頁面效果 -->
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="nav-aboutUs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              關於
-            </a>
-            <div class="dropdown-menu" aria-labelledby="nav-aboutUs">
-              <a class="dropdown-item" href="./about">公司介紹</a>
-              <a class="dropdown-item" href="./news_list">最新消息</a>
-            </div>
-          </div>
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="nav-productList" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              產品項目
-            </a>
-            <div class="dropdown-menu" aria-labelledby="nav-productList">
-              <a class="dropdown-item" href="./product_1">產品1</a>
-              <a class="dropdown-item" href="./product_2">產品2</a>
-              <a class="dropdown-item" href="./product_3">產品3</a>
-              <a class="dropdown-item" href="./product_4">產品4</a>
-              <a class="dropdown-item" href="./product_5">產品5</a>
-            </div>
-          </div>
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="nav-brandProductList" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              品牌專區
-            </a>
-            <div class="dropdown-menu" aria-labelledby="nav-brandProductList">
-              <a class="dropdown-item" href="./brandProduct_1">品牌1</a>
-              <a class="dropdown-item" href="./brandProduct_2">品牌2</a>
-              <a class="dropdown-item" href="./brandProduct_3">品牌3</a>
-              <a class="dropdown-item" href="./brandProduct_4">品牌4</a>
-              <a class="dropdown-item" href="./brandProduct_5">品牌5</a>
-            </div>
-          </div>
-          <a class="nav-item nav-link" href="./vendors">品牌代理</a>
-          <a class="nav-item nav-link" href="./download">下載專區</a>
-          <a class="nav-item nav-link" href="./contact">聯絡我們</a>
+          <NavBarItem
+            v-for="(item, value) in menuData"
+            :key="value"
+            :item="item"
+            />
         </div>
       </div>
 
@@ -84,7 +51,7 @@
       </form>
 
       <!-- 按鈕 -->
-      <div class="d-flex align-items-center">
+      <div class="navbar-btn">
         <p class="d-md-block d-none">會員限定</p>
         <button type="button" class="btn btn-outline-secondary" :class="{ 'hide': isHidden }">登入</button>
         <button type="button" class="btn btn-secondary d-md-block d-none">加入會員</button>
@@ -95,14 +62,198 @@
 </template>
 
 <script>
+import NavBarItem from '@/components/NavBarItem.vue'
 export default {
   name: 'NavBar',
+  components: {
+    NavBarItem
+  },
   props: {
     // msg: String
   },
   data () {
     return {
-      isHidden: false
+      isHidden: false,
+      menuData: [
+        {
+          text: '健康焦點',
+          children: [
+            {
+              text: '醫療',
+              href: './medical'
+            },
+            {
+              text: '癌症',
+              href: './cancer'
+            },
+            {
+              text: '熟齡',
+              href: './age'
+            },
+            {
+              text: '養生',
+              href: './wellness'
+            },
+            {
+              text: '營養',
+              href: './nutrition'
+            },
+            {
+              text: '運動',
+              href: './exercise'
+            },
+            {
+              text: '心靈',
+              href: './spirit'
+            },
+            {
+              text: '人物',
+              href: './character'
+            }
+          ]
+        },
+        {
+          text: '健康檢測',
+          children: [
+            {
+              text: '症狀檢測',
+              href: './symptom-check'
+            },
+            {
+              text: '聰明補營養',
+              href: './smart-nutrition'
+            },
+            {
+              text: '線上測驗',
+              href: './online-test'
+            },
+            {
+              text: 'BMI 指數',
+              href: './bmi'
+            },
+            {
+              text: '症狀檢測',
+              href: './symptom-check'
+            },
+            {
+              text: '聰明補營養',
+              href: './smart-nutrition'
+            },
+            {
+              text: '線上測驗',
+              href: './online-test'
+            },
+            {
+              text: 'BMI 指數',
+              href: './bmi'
+            },
+            {
+              text: '理想體重計算',
+              href: './bmi'
+            },
+            {
+              text: '每日所需熱量',
+              href: './bmi'
+            },
+            {
+              text: '運動強度計算',
+              href: './bmi'
+            },
+            {
+              text: '安全期計算',
+              href: './bmi'
+            },
+            {
+              text: '生理期瘦身法',
+              href: './bmi'
+            }
+            // ...省略其它次菜單項
+          ]
+        },
+        {
+          text: '特色內容',
+          children: [
+            {
+              text: '數位專題',
+              href: './topic'
+            },
+            {
+              text: '深度報導',
+              href: './report'
+            },
+            {
+              text: 'BBC News 中文',
+              href: './bbc-news'
+            },
+            {
+              text: '真健康飲食',
+              href: './diet'
+            },
+            {
+              text: 'AA人生動起來',
+              href: './aa'
+            }
+          ]
+        },
+        {
+          text: '專家專欄',
+          children: [
+            {
+              text: '專欄總覽',
+              href: './columns'
+            },
+            {
+              text: '楊定一',
+              href: './author-1'
+            },
+            {
+              text: '吳明賢',
+              href: './author-2'
+            },
+            {
+              text: '吃藥問康健',
+              href: './author-2'
+            },
+            {
+              text: '口袋熊醫師',
+              href: './author-2'
+            },
+            {
+              text: '醫生這樣說',
+              href: './author-2'
+            },
+            {
+              text: '吃對營養',
+              href: './author-2'
+            },
+            {
+              text: '心靈關係',
+              href: './author-2'
+            },
+            {
+              text: '熟齡人生',
+              href: './author-2'
+            },
+            {
+              text: '生活秒方',
+              href: './author-2'
+            },
+            {
+              text: '其他主題',
+              href: './author-2'
+            }
+            // ...省略其它作者
+          ]
+        },
+        {
+          text: '論壇活動',
+          href: './forum'
+        },
+        {
+          text: '課程講座',
+          href: './courses'
+        }
+      ]
     }
   },
   mounted () {

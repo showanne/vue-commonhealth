@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid">
-    <div class="row align-items-center flex-column-reverse">
-      <div class="col-12 col-md-6">
+  <div class="container-fluid index">
+    <div class="row align-items-center flex-column-reverse flex-md-row">
+      <div class="col-12 col-md-5">
         <div class="card">
           <div class="card-body">
             <!-- 該文章資訊 -->
@@ -12,13 +12,13 @@
               <span class="text-primary">常見問題</span>
             </div>
             <!-- 該文章標題 -->
-            <p class="card-title">花天酒地撒錢錢</p>
+            <p class="card-title">疫情期間，癌症化療病人尿不出來又怕掛急診染疫，怎麼辦？</p>
             <!-- 瞭解更多 -->
             <a href="#" class="btn btn-outline-secondary card-link card-link">立即閱讀</a>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-7">
         <!-- <img src="https://picsum.photos/800/600" alt="news" title="news"> -->
         <Swiper
           :modules="modules"
@@ -45,8 +45,8 @@
           <SwiperSlide v-for="(item, index) in bannerItems" :key="index">
             <img :src="`https://picsum.photos/768/432?random=${index}`" fluid alt="Banner Image">
           </SwiperSlide>
-          <button class="swiper-button-prev"></button>
-          <button class="swiper-button-next"></button>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
           <div class="swiper-pagination"></div>
         </Swiper>
       </div>
@@ -101,62 +101,4 @@ export default {
 
 <style scoped lang="scss">
 
-.container-fluid {
-  background-color: #F9F8F7;
-}
-
-.card {
-  &-info {
-    .badge {
-      &::before {
-          content: url('../assets/image/badge-arrow.svg');
-        }
-      & ~ span {
-        padding: 6px;
-        &::before {
-          content: '#';
-        }
-      }
-    }
-  }
-  &-body {}
-}
-
-/* .swiper-container {
-  overflow: hidden;
-} */
-
-.swiper {
-  width: 87%;
-  /* height: 320px; */
-}
-
-.swiper-slide {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-  border-radius: 12px;
-  /* font-size: 22px;
-  font-weight: bold; */
-  /* color: #fff; */
-}
-.swiper-slide img {
-  aspect-ratio: 768/432 ;
-}
-
-.swiper-card-content {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  color: #fff;
-  z-index: 10;
-}
-
-.swiper-pagination {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-}
 </style>

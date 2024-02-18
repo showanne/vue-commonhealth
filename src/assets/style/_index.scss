@@ -1,1 +1,78 @@
 /* 首頁 */
+
+:root {
+  --swiper-theme-color: #fff;
+  --swiper-navigation-size: 44px;
+
+  --swiper-pagination-bullet-inactive-color: #fff;
+  --swiper-pagination-bullet-inactive-opacity: 0.6;
+  --swiper-pagination-bottom: 16px;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
+  // --swiper-pagination-bullet-vertical-gap: 6px;
+  @include media-breakpoint-up(md) {
+    // --swiper-pagination-progressbar-size: 32px;
+    --swiper-pagination-bullet-width: 32px;
+    --swiper-pagination-bullet-border-radius: 4px;
+  }
+}
+
+.container-fluid {
+  &.index {
+    background-color: #F9F8F7;
+    @include padding(32px, null);
+    @include media-breakpoint-up(md) {
+      @include padding(64px, null);
+    }
+  }
+}
+
+.swiper {
+  width: 87%;
+  &-slide {
+    border-radius: 12px;
+    img {
+      aspect-ratio: 768/432 ;
+    }
+  }
+
+  // &-card-content {
+  //   position: absolute;
+  //   bottom: 20px;
+  //   left: 20px;
+  //   right: 20px;
+  //   color: #fff;
+  //   z-index: 10;
+  // }
+
+  // &-pagination {
+  //   position: absolute;
+  //   bottom: 10px;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  // }
+
+  &-button-prev::after {
+    content: url(../image/arrow-left-line.svg); 
+  }
+  
+  &-button-next::after {
+    content: url(../image/arrow-right-line.svg); 
+  }
+}
+
+.card {
+  &-info {
+    .badge {
+      &::before {
+          content: url('../image/badge-arrow.svg');
+        }
+      & ~ span {
+        padding: 6px;
+        &::before {
+          content: '#';
+        }
+      }
+    }
+  }
+  &-body {}
+}

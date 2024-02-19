@@ -64,9 +64,11 @@
   &-info {
     .badge {
       &::before {
-          content: url('../image/badge-arrow.svg');
-        }
-      & ~ span {
+        content: url('../image/badge-arrow.svg');
+      }
+    }
+    span {
+      &:not(.badge) {
         padding: 6px;
         &::before {
           content: '#';

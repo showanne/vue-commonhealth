@@ -1,16 +1,9 @@
 <template>
   <!-- NavLink -->
-  <nav class="navbar navbar-dark bg-primary d-md-flex d-none">
-    <div class="container">
+  <nav class="navbar navbar-dark bg-primary py-1 d-md-flex d-none">
+    <div class="container justify-content-end">
       <!-- nav  -->
-      <router-link to="/page" class="text-white">康健</router-link>
-      <router-link to="/page" class="text-white">大人社團</router-link>
-      <router-link to="/page" class="text-white">康健知識庫</router-link>
-      <router-link to="/page" class="text-white">康健線上學習</router-link>
-      <router-link to="/page" class="text-white">康健嚴選</router-link>
-      <router-link to="/page" class="text-white">康健出版</router-link>
-      <router-link to="/page" class="text-white">康健影音</router-link>
-      <router-link to="/page" class="text-white">書香花園</router-link>
+      <router-link to="/page" class="ml-n1 pl-3 pr-2 py-1 text-white" v-for=" (link, value) in navLink" :key="value">{{ link }}</router-link>
     </div>
   </nav>
 </template>
@@ -20,6 +13,20 @@ export default {
   name: 'NavLink',
   props: {
     // msg: String
+  },
+  data () {
+    return {
+      navLink: [
+        '康健',
+        '大人社團',
+        '康健知識庫',
+        '康健線上學習',
+        '康健嚴選',
+        '康健出版',
+        '康健影音',
+        '書香花園'
+      ]
+    }
   }
 }
 </script>
@@ -27,6 +34,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .navbar {
-  a {}
+  a {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0em;
+  }
 }
 </style>

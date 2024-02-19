@@ -1,6 +1,6 @@
 <template>
   <!-- header -->
-  <nav id="header" class="navbar navbar-light bg-white fixed-top" :class="{ 'hide': isHidden }">
+  <nav id="header" class="navbar navbar-light bg-white" :class="{ 'hide': isHidden }">
     <div class="container">
       <!-- 選單 -->
       <button type="button" class="navbar-toggler collapsed" :class="{ 'hide': isHidden }" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,10 +22,10 @@
 
       <!-- logo -->
       <div class="d-flex mr-auto">
-        <router-link to="/" class="navbar-brand" :class="{ 'hide': isHidden }">
+        <router-link to="/" class="navbar-brand ml-4" :class="{ 'hide': isHidden }">
           <img src="../assets/image/logo-1@3x.webp" alt="commonhealth">
         </router-link>
-        <router-link to="/page" class="navbar-brand d-md-block d-none">
+        <router-link to="/page" class="navbar-brand ml-4 d-md-block d-none">
           <img src="../assets/image/logo-2@2x.png" alt="commonhealth">
         </router-link>
       </div>
@@ -45,17 +45,19 @@
           </select>
           <input type="search" class="form-control" aria-label="請輸入關鍵字" placeholder="請輸入關鍵字">
           <div class="input-group-append">
-            <button class="btn btn-outline-light" type="submit">搜尋</button>
+            <button class="btn btn-outline-light" type="submit">
+              <img src="../assets/image/Union.svg" alt="">
+            </button>
           </div>
         </div>
       </form>
 
       <!-- 按鈕 -->
       <div class="navbar-btn">
-        <p class="d-md-block d-none">會員限定</p>
+        <p class="d-md-block d-none ml-5 mr-3 pt-3">會員限定</p>
         <button type="button" class="btn btn-outline-secondary" :class="{ 'hide': isHidden }">登入</button>
-        <button type="button" class="btn btn-secondary d-md-block d-none">加入會員</button>
-        <button type="button" class="btn btn-success" v-show="isHidden">加入 Line</button>
+        <button type="button" class="btn btn-secondary ml-2 d-md-block d-none">加入會員</button>
+        <button type="button" class="btn btn-success d-md-none" v-show="isHidden">加入 Line</button>
       </div>
     </div>
   </nav>
@@ -264,10 +266,14 @@ export default {
   },
   methods: {
     handleScroll () {
-      if (window.pageYOffset > 50) {
+      if (window.innerWidth > 768) {
         this.isHidden = true
       } else {
-        this.isHidden = false
+        if (window.pageYOffset > 50) {
+          this.isHidden = true
+        } else {
+          this.isHidden = false
+        }
       }
     }
   }

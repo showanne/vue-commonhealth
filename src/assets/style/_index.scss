@@ -76,5 +76,16 @@
       }
     }
   }
+  &-title {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: lineHeight(28px, 42px);  
+    @include padding(16px, null, 48px, null);
+    @include media-breakpoint-up(md) {
+      font-size: 32px;
+      line-height: lineHeight(32px, 48px);
+      padding-bottom: 96px;
+    }
+  }
   &-body {}
 }

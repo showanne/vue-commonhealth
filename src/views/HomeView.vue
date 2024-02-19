@@ -7,9 +7,6 @@
           :modules="modulesFade"
           :slides-per-view="1"
           :effect="fade"
-          :fadeEffect="{
-            crossFade: true,
-          }"
           :grab-cursor="false"
           :allowTouchMove="false"
           :loop="true"

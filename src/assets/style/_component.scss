@@ -20,10 +20,13 @@ a {
   &.fluid-xl {
     max-width: 1242px;
   }
-  }
+}
 
 // header
 #header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
   @include padding(10px, 0);
   max-width: 100vw;
   height: $h-nav;
@@ -50,6 +53,7 @@ a {
       position: absolute;
       top: $h-nav;
       left: 100%;
+      z-index: 999;
       width: 100%;
       background: $white linear-gradient(to bottom ,#0001 0% ,#fff 3%);
       padding-top: 20px;
@@ -168,6 +172,7 @@ a {
     &-btn {
       display: flex;
       align-items: center;
+      
       button {
         font-weight: 500;
         @include media-breakpoint-up(md) {

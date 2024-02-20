@@ -1,6 +1,6 @@
 <template>
   <!-- header -->
-  <nav id="header" class="navbar navbar-light bg-white" :class="{ 'hide': isHidden }">
+  <nav id="header"  ref="header" class="navbar navbar-light bg-white" :class="{ 'hide': isHidden ,'fixed-top': isActive }" @click="headerToggle">
     <div class="container fluid-xl">
       <!-- 選單 -->
       <button type="button" class="navbar-toggler collapsed" :class="{ 'hide': isHidden }" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,8 @@
       <!-- logo -->
       <div class="d-flex mr-auto">
         <router-link to="/" class="navbar-brand ml-4" :class="{ 'hide': isHidden }">
-          <img src="../assets/image/logo-1@3x.webp" alt="commonhealth">
+          <img src="https://fakeimg.pl/136x29/CCC?text=logo" class="d-md-none d-block" alt="logo">
+          <img src="https://fakeimg.pl/200x48/CCC?text=logo" class="d-md-block d-none" alt="logo">
         </router-link>
         <router-link to="/ad" class="navbar-brand ml-4 d-md-block d-none">
           <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="d-md-none d-block rounded-sm" alt="Nav_AD">
@@ -79,6 +80,7 @@ export default {
   data () {
     return {
       isHidden: false,
+      isActive: true,
       menuData: [
         {
           text: '健康焦點',
@@ -268,6 +270,22 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
+    // NOTE: header 手機版 2種狀態
+    // 1. 初始：選單+logo+登入按鈕
+    //          選單展開時，不能滑動頁面，並且希望 header 及選單可以占滿視窗
+    // 2. 下滑後：篩選列+加入line按鈕
+    //           篩選列點擊後，會展開輸入關鍵字的輸入框
+    headerToggle () {
+      if (window.innerWidth > 768) {
+        // header 選單展開時背景不滑動
+        this.$refs.header.classList.toggle('overflow-hidden')
+        // header 選單 手機版收合效果
+        document.querySelector('.navbar .dropdown-menu').classList.remove('show')
+        // this.$refs.nav.classList.remove('show')
+      } else {
+        // dte
+      }
+    },
     handleScroll () {
       if (window.innerWidth > 768) {
         this.isHidden = true

@@ -11,10 +11,12 @@ jobs:
     # Checkout code
     - name: checkout 
       uses: actions/checkout@v3
+
+    - name: setup 
       uses: actions/setup-node@v3
       with:
         node-version: 18
-        
+
     # Install and build
     - name: Install and Build
       run: |

@@ -1,5 +1,6 @@
 <template>
-  <div class="container fluid-xl index">
+  <section class="swiperBanner">
+  <div class="container fluid-xl">
     <div class="row align-items-center flex-column-reverse flex-md-row">
       <div class="col-12 col-md-4">
         <Swiper
@@ -86,6 +87,7 @@
       </div>
     </div>
   </div>
+  </section>
 </template>
 
 <script>

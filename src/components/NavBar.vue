@@ -1,7 +1,7 @@
 <template>
   <!-- header -->
   <nav id="header" class="navbar navbar-light bg-white" :class="{ 'hide': isHidden }">
-    <div class="container">
+    <div class="container fluid-xl">
       <!-- 選單 -->
       <button type="button" class="navbar-toggler collapsed" :class="{ 'hide': isHidden }" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
         <div class="menu">

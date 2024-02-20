@@ -16,13 +16,13 @@
   }
 }
 
-.container-fluid {
-  &.index {
-    background-color: #F9F8F7;
-    @include padding(32px, null);
-    @include media-breakpoint-up(md) {
-      @include padding(64px, null);
-    }
+.swiperBanner {
+  background-color: #F9F8F7;
+  @include padding(32px, null);
+  margin-bottom: 40px;
+  @include media-breakpoint-up(md) {
+    @include padding(64px, null);
+    margin-bottom: 64px;
   }
 }
 
@@ -102,5 +102,7 @@
       padding-bottom: 96px;
     }
   }
-  &-body {}
+  &-link {
+    align-self: center;
+  }
 }

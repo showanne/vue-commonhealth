@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid index">
+  <div class="container fluid-xl index">
     <div class="row align-items-center flex-column-reverse flex-md-row">
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-4">
         <Swiper
           ref="swiperFade"
           :modules="modulesFade"
@@ -27,7 +27,6 @@
         >
           <SwiperSlide v-for="(article, index) in articleData" :key="index">
             <div class="card">
-              <div class="card-body">
                 <!-- 該文章資訊 -->
                 <div class="card-info">
                   <span v-if="article.video" class="badge badge-dark">影音</span>
@@ -43,13 +42,12 @@
                   {{ article.title }}
                 </p>
                 <!-- 立即閱讀 -->
-                <a :href="article.href" class="btn btn-outline-secondary card-link card-link">立即閱讀</a>
-              </div>
+              <a :href="article.href" class="btn btn-outline-secondary card-link d-inline-block mt-auto">立即閱讀</a>
             </div>
           </SwiperSlide>
         </Swiper>
       </div>
-      <div class="col-12 col-md-7">
+      <div class="col-12 col-md-8">
         <!-- <img src="https://picsum.photos/800/600" alt="news" title="news"> -->
         <Swiper
           ref="swiperCard"
@@ -110,7 +108,7 @@ export default {
           href: '/article-1'
         },
         {
-          title: '容易暈車怎麼辦？3招有效自救',
+          title: '容易暈車怎麼辦？3招有效自救方式',
           video: false,
           tags: ['預防', '暈車'],
           img: 'https://picsum.photos/768/432',

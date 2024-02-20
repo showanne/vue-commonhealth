@@ -27,7 +27,9 @@
 }
 
 .swiper {
-  width: 87%;
+  &.swiper-cards {
+    width: 87%;
+  }
   &-slide {
     border-radius: 12px;
     img {
@@ -63,11 +65,22 @@
 .card {
   &-info {
     .badge {
+      @include padding(1px, 9px);
+      margin-right: 6px;
+      background-color: rgba($dark, 0.6);
+      
       &::before {
         content: url('../image/badge-arrow.svg');
+        @include padding(3px);
+        
       }
     }
     span {
+      font-size: 14px;
+      line-height: lineHeight(14px, 20px);  
+      font-weight: 400;
+      letter-spacing: 1px;
+
       &:not(.badge) {
         padding: 6px;
         &::before {
@@ -80,6 +93,8 @@
     font-weight: 700;
     font-size: 28px;
     line-height: lineHeight(28px, 42px);  
+    letter-spacing: 0.01em;
+    text-align: left;
     @include padding(16px, null, 48px, null);
     @include media-breakpoint-up(md) {
       font-size: 32px;

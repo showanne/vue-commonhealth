@@ -16,6 +16,12 @@ a {
   }
 }
 
+.container {
+  &.fluid-xl {
+    max-width: 1242px;
+  }
+  }
+
 // header
 #header {
   @include padding(10px, 0);

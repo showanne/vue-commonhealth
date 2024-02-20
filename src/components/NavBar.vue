@@ -12,8 +12,8 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="nav">
         <div class="navbar-nav">
-          <router-link to="/ad">
-            <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="img-fluid m-auto d-md-none d-block rounded-sm" alt="Nav_AD">
+          <router-link to="/ad" class="d-md-block d-none">
+            <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="img-fluid m-auto rounded-sm" alt="Nav_AD">
           </router-link>
           <NavBarItem
             v-for="(item, value) in menuData"
@@ -30,7 +30,7 @@
           <img src="https://fakeimg.pl/200x48/CCC?text=logo" class="d-md-block d-none" alt="logo">
         </router-link>
         <router-link to="/ad" class="navbar-brand ml-4 d-md-block d-none">
-          <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="d-md-none d-block rounded-sm" alt="Nav_AD">
+          <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="rounded-sm" alt="Nav_AD">
         </router-link>
       </div>
 
@@ -61,7 +61,7 @@
         <p class="d-md-block d-none ml-5 mr-3 pt-3">會員限定</p>
         <button type="button" class="btn btn-outline-secondary" :class="{ 'hide': isHidden }">登入</button>
         <button type="button" class="btn btn-secondary ml-2 d-md-block d-none">加入會員</button>
-        <button type="button" class="btn btn-success d-md-none" v-show="isHidden">加入 Line</button>
+        <button type="button" class="btn btn-success ml-3 d-md-none" v-show="isHidden">加入 Line</button>
       </div>
     </div>
   </nav>

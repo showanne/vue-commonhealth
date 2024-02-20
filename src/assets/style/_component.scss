@@ -18,7 +18,7 @@ a {
 
 .container {
   &.fluid-xl {
-    max-width: 1242px;
+    max-width: 1266px; // 1242px;
   }
 }
 
@@ -34,12 +34,12 @@ a {
     height: $h-nav-md;
   }
   // 相鄰的下一區塊位置調整
-  & + * {
-    margin-top: $h-nav;
-    @include media-breakpoint-up(md) {
-      margin-top: $h-nav-md;
-    }
-  }
+  // & + * {
+  //   margin-top: $h-nav;
+  //   @include media-breakpoint-up(md) {
+  //     margin-top: $h-nav-md;
+  //   }
+  // }
   .navbar {
     &-brand {
       img {
@@ -137,6 +137,10 @@ a {
     }
     &-nav {}
     &-search {
+      max-width: calc(100% - 88px - 16px - 18px - 18px);
+      @include media-breakpoint-up(md) {
+        max-width: 400px;
+      }
       .input-group {
         &::before {
           content: '';

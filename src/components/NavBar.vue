@@ -12,6 +12,9 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="nav">
         <div class="navbar-nav">
+          <router-link to="/ad">
+            <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="img-fluid m-auto d-md-none d-block rounded-sm" alt="Nav_AD">
+          </router-link>
           <NavBarItem
             v-for="(item, value) in menuData"
             :key="value"
@@ -25,8 +28,8 @@
         <router-link to="/" class="navbar-brand ml-4" :class="{ 'hide': isHidden }">
           <img src="../assets/image/logo-1@3x.webp" alt="commonhealth">
         </router-link>
-        <router-link to="/page" class="navbar-brand ml-4 d-md-block d-none">
-          <img src="../assets/image/logo-2@2x.png" alt="commonhealth">
+        <router-link to="/ad" class="navbar-brand ml-4 d-md-block d-none">
+          <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="d-md-none d-block rounded-sm" alt="Nav_AD">
         </router-link>
       </div>
 

@@ -1,0 +1,28 @@
+name: Build and Deploy
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    # Checkout code
+    - name: Checkout 
+      uses: actions/checkout@v3
+
+    # Install and build
+    - name: Install and Build
+      run: |
+        npm install
+        npm run build
+
+    # Deploy to server  
+    - name: Deploy
+      uses: JimCronqvist/action-scp@master
+      with:
+        branch: gh-pages
+        # 打包後創建的資料夾名稱
+        folder: dist

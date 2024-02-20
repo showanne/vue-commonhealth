@@ -1,4 +1,8 @@
 <template>
+  <router-link to="/ad">
+    <img src="https://fakeimg.pl/300x250/CCC?text=AD_Block" class="img-fluid m-auto d-md-none d-block" alt="AD_Block">
+    <img src="https://fakeimg.pl/970x250/CCC?text=AD_Block" class="img-fluid m-auto d-md-block d-none" alt="AD_Block">
+  </router-link>
   <NavLink />
   <NavBar />
   <!-- <nav>

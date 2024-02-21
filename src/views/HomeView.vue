@@ -1,5 +1,5 @@
 <template>
-  <section class="swiperBanner">
+  <section class="swiperBanner" v-if="dataLoaded">
   <div class="container fluid-xl">
     <div class="row align-items-center flex-column-reverse flex-md-row">
       <div class="col-12 col-md-4">
@@ -103,6 +103,7 @@ import 'swiper/swiper-bundle.css'
 export default {
   data () {
     return {
+      dataLoaded: false,
       combinedArticleData: [],
       articleApi: [],
       articleData: [
@@ -133,6 +134,13 @@ export default {
           tags: ['防癌', '抗發炎'],
           img: 'https://picsum.photos/768/432'
           // href: '/article-3'
+        },
+        {
+          title: '疫情期間，癌症化療病人尿不出來又怕掛急診染疫，怎麼辦？',
+          video: true,
+          tags: ['不分癌', '常見治療問題', '常見問題'],
+          img: 'https://picsum.photos/768/432',
+          href: '/news'
         }
       ]
     }
@@ -161,7 +169,7 @@ export default {
             country: 'ca'
           }
         })
-        console.table('response:', response.data.sources)
+        // console.table('response:', response.data.sources)
         this.articleApi = response.data.sources.map((article, index) => ({
           title: article.description,
           href: article.url
@@ -176,6 +184,9 @@ export default {
           ...this.articleApi[index]
         }))
         // console.table('combinedData', this.combinedArticleData)
+
+        // 資料取得完成，將 dataLoaded 設為 true，顯示組件內容
+        this.dataLoaded = true
       } catch (error) {
         console.error('Error fetching news:', error)
       }

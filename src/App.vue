@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/ad">
+  <router-link to="/ad" class="ad-block">
     <img src="https://fakeimg.pl/300x250/CCC?text=AD_Block" class="img-fluid m-auto d-md-none d-block" alt="AD_Block">
     <img src="https://fakeimg.pl/970x250/CCC?text=AD_Block" class="img-fluid m-auto d-md-block d-none" alt="AD_Block">
   </router-link>
@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -33,6 +33,13 @@ export default {
 .container {
   &.bg-dark {
     height: 300vh;
+  }
+}
+.ad-block {
+  display: block;
+  margin-bottom: 12px;
+  @media (min-width: 768px) {
+    margin-bottom: 1rem;
   }
 }
 </style>

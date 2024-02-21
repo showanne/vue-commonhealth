@@ -155,10 +155,9 @@ export default {
   methods: {
     async fetchArticleData () {
       try {
-        // TODO: apiKey env
         const response = await axios.get('https://newsapi.org/v2/top-headlines/sources', {
           params: {
-            apiKey: 'apiKey',
+            apiKey: process.env.VUE_APP_API_TOKEN,
             country: 'ca'
           }
         })

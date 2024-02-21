@@ -24,7 +24,7 @@
       </div>
 
       <!-- logo -->
-      <div class="d-flex mr-auto" :class="{ 'hide': isHidden }">
+      <div class="navbar-logo mr-auto" :class="{ 'hide': isHidden }">
         <router-link to="/" class="navbar-brand ml-4">
           <img src="https://fakeimg.pl/136x29/CCC?text=logo" class="d-md-none d-block" alt="logo">
           <img src="https://fakeimg.pl/200x48/CCC?text=logo" class="d-md-block d-none" alt="logo">
@@ -47,15 +47,15 @@
           <option value="6">特色內容</option>
           <option value="7">知識庫</option>
           </select>
-          <input type="search" class="form-control" aria-label="請輸入關鍵字" placeholder="請輸入關鍵字" name="key" v-show="isSearch">
-          <div class="input-group-append" v-show="isSearch">
-            <button class="btn btn-outline-light" type="submit">
-              <img src="../assets/image/Union.svg" alt="">
-            </button>
-          </div>
-          <div class="input-group-append" v-if="!isSearch">
-            <button class="btn btn-outline-light" type="button" @click="searchBarToggle">
-              <img src="../assets/image/Union.svg" alt="">
+          <input type="search" class="form-control" aria-label="請輸入關鍵字" placeholder="請輸入關鍵字" name="key">
+          <!-- v-show="isSearch" -->
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-light"
+              :type="isSearch ? 'submit' : 'button'"
+              @click="searchBarToggle"
+            >
+              <img src="../assets/image/Union.svg" alt="search">
             </button>
           </div>
         </div>
@@ -86,9 +86,9 @@ export default {
     return {
       windowWidth: window.innerWidth,
       lastScrollTop: 0,
-      isHidden: false,
-      isActive: true,
-      isSearch: false,
+      isHidden: false, // 手機版 header 切換效果
+      isActive: true, // menu 展開
+      isSearch: false, // 手機版 Search 點擊切換輸入框
       menuData: [
         {
           text: '健康焦點',
@@ -289,21 +289,25 @@ export default {
     // 2. 下滑後：篩選列+加入line按鈕
     //           篩選列點擊後，會展開輸入關鍵字的輸入框
     headerToggle () {
-      if (this.windowWidth > 768) {
-        // header 選單展開時背景不滑動
-        this.$refs.header.classList.toggle('overflow-hidden')
-        // header 選單 手機版收合效果
-        document.querySelector('.navbar .dropdown-menu').classList.remove('show')
-        // this.$refs.nav.classList.remove('show')
-      } else {
-        // dte
-      }
+      // if (this.windowWidth > 768) {
+      //   // header 選單展開時背景不滑動
+      //   this.$refs.header.classList.toggle('overflow-hidden')
+      //   // header 選單 手機版收合效果
+      //   document.querySelector('.navbar .dropdown-menu').classList.remove('show')
+      //   // this.$refs.nav.classList.remove('show')
+      // } else {
+      //   // dte
+      // }
     },
-    searchBarToggle () {
+    searchBarToggle (event) {
       if (this.windowWidth > 768) {
         // search 正常狀態
       } else {
-        this.isSearch = true
+        console.log(this.isSearch)
+        if (this.isSearch === false) {
+          event.preventDefault()
+          this.isSearch = true
+        }
       }
     },
     handleScroll () {

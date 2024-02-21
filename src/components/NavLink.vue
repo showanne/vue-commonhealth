@@ -1,7 +1,7 @@
 <template>
   <!-- NavLink -->
   <nav class="navbar navbar-dark bg-primary py-1 d-md-flex d-none">
-    <div class="container justify-content-end">
+    <div class="container fluid-xl justify-content-end">
       <!-- nav  -->
       <router-link to="/page" class="ml-n1 pl-3 pr-2 py-1 text-white" v-for=" (link, value) in navLink" :key="value">{{ link }}</router-link>
     </div>

@@ -18,7 +18,7 @@ a {
 
 .container {
   &.fluid-xl {
-    max-width: 1266px; // 1242px;
+    max-width: 1262px;
   }
 }
 
@@ -40,14 +40,24 @@ a {
   //     margin-top: $h-nav-md;
   //   }
   // }
+  .container {
+    @include media-breakpoint-down(sm) {
+      @include padding(null, 18px);
+    }
+  }
   .navbar {
     &-logo {
       display: flex;
     }
     &-brand {
+      @include margin(null, 0, null, 12px);
+      
       img {
         height: 29px;
-        @include media-breakpoint-up(md) {
+      }
+      @include media-breakpoint-up(md) {
+        @include margin(null, null, null, 1.5rem);
+        img {
           height: 48px;
         }
       }
@@ -86,12 +96,15 @@ a {
     &-toggler {
       border-width: 0;
       @include padding(0, 3px);
-
+      
+      @include media-breakpoint-down(sm) {
+        padding-left: 0;
+      }
       .menu {
-        @include size(30px);
+        @include size(22px, 30px);
         position: relative;
         @include media-breakpoint-up(md) {
-          @include size(50px);
+          @include size(36px, 50px);
         }
       }
       .line {
@@ -102,7 +115,7 @@ a {
         transition: all cubic-bezier(0.26, 0.1, 0.27, 1.55) 0.3s;
         @include size(18px, 2px);
         @include media-breakpoint-up(md) {
-          @include size(33px, 3.5px);
+          @include size(27px, 2.5px);
         }
       }
       .top {
@@ -138,7 +151,10 @@ a {
         }
       }
     }
-    &-nav {}
+    &-nav {
+      @include padding(null, 24px);
+
+    }
     &-search {
       max-width: 100%;
       @include media-breakpoint-up(md) {
@@ -150,17 +166,23 @@ a {
           position: absolute;
           top: 8px;
           z-index: 100; // override header z-index
-          left: 122px;
+          left: 112px;
           display: block;
           width: 1px;
           height: 24px;
           background-color: $light;
+          @include media-breakpoint-up(md) {
+            left: 120px;
+          }
         }
       }
       .custom-select {
-        width: 122px;
+        width: 120px;
         flex: 0 1 auto;
         border-right-width: 0;
+        // @include media-breakpoint-up(md) {
+        //   width: 118px;
+        // }
       }
       input {
         border-right-width: 0;
@@ -235,8 +257,14 @@ a {
       
       button {
         font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0.01em;
+        
+        @include media-breakpoint-down(sm) {
+          @include padding(7px, 15px);
+        }
         @include media-breakpoint-up(md) {
-          line-height: 1.5;
+          line-height: lineHeight(16px, 22px);  
         }
 
         &:nth-child(2) {
@@ -244,6 +272,7 @@ a {
         }
         &:nth-child(3) {
           @include button-variant($secondary, $white);
+          color: $white;
         }
         &:nth-child(4) {
           @include button-variant($success, $white);

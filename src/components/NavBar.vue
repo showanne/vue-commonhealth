@@ -1,6 +1,6 @@
 <template>
   <!-- header -->
-  <nav id="header"  ref="header" class="navbar navbar-light bg-info" :class="{ 'hide': isHidden ,'fixed-top': isActive }" @click="headerToggle">
+  <nav id="header" ref="header" class="navbar navbar-light bg-white" :class="{ 'hide': isHidden ,'fixed-top': isActive }" @click="headerToggle">
     <div class="container fluid-xl">
       <!-- 選單 -->
       <button type="button" class="navbar-toggler collapsed" :class="{ 'hide': isHidden }" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" :class="{ 'hide': isHidden }" id="nav">
         <div class="navbar-nav">
-          <router-link to="/ad" class="d-md-block d-none">
+          <router-link to="/ad" class="d-lg-none d-block m-auto">
             <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="img-fluid m-auto rounded-sm" alt="Nav_AD">
           </router-link>
           <NavBarItem
@@ -25,11 +25,11 @@
 
       <!-- logo -->
       <div class="navbar-logo mr-auto" :class="{ 'hide': isHidden }">
-        <router-link to="/" class="navbar-brand ml-4">
+        <router-link to="/" class="navbar-brand">
           <img src="https://fakeimg.pl/136x29/CCC?text=logo" class="d-md-none d-block" alt="logo">
           <img src="https://fakeimg.pl/200x48/CCC?text=logo" class="d-md-block d-none" alt="logo">
         </router-link>
-        <router-link to="/ad" class="navbar-brand ml-4 d-md-block d-none">
+        <router-link to="/ad" class="navbar-brand d-lg-block d-none">
           <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="rounded-sm" alt="Nav_AD">
         </router-link>
       </div>
@@ -273,7 +273,9 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.searchBarToggle)
     window.addEventListener('resize', this.handleResize)
+    window.addEventListener('resize', this.searchBarToggle)
   },
   beforeUnmount () {
     window.removeEventListener('scroll', this.handleScroll)
@@ -300,8 +302,10 @@ export default {
       // }
     },
     searchBarToggle (event) {
+      console.log('searchBarToggle')
       if (this.windowWidth > 768) {
         // search 正常狀態
+        // this.isSearch = true
       } else {
         console.log(this.isSearch)
         if (this.isSearch === false) {
@@ -311,6 +315,7 @@ export default {
       }
     },
     handleScroll () {
+      console.log('handleScroll')
       const scrollTop = document.documentElement.scrollTop
 
       if (this.windowWidth > 768) {

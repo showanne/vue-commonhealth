@@ -26,7 +26,7 @@
           @swiper="onSwiper"
           @slideChange="onSlideChange"
         >
-          <SwiperSlide v-for="(article, index) in articleData" :key="index">
+          <SwiperSlide v-for="(article, index) in combinedArticleData" :key="index">
             <div class="card">
                 <!-- 該文章資訊 -->
                 <div class="card-info">
@@ -43,7 +43,7 @@
                   {{ article.title }}
                 </p>
                 <!-- 立即閱讀 -->
-              <a :href="article.href" class="btn btn-outline-secondary card-link d-inline-block mt-auto">立即閱讀</a>
+                <a :href="article.href" class="btn btn-outline-secondary card-link d-inline-block mt-auto" target="_blank">立即閱讀</a>
             </div>
           </SwiperSlide>
         </Swiper>
@@ -75,10 +75,10 @@
           @swiper="onSwiper"
           @slideChange="onSlideChange"
         >
-          <SwiperSlide v-for="(article, index) in articleData" :key="index">
-            <router-link :to="article.href" class="text-white">
+          <SwiperSlide v-for="(article, index) in combinedArticleData" :key="index">
+            <a :href="article.href" class="text-white" target="_blank">
               <img :src="`${article.img}?random=${index}`" fluid alt="Banner Image">
-            </router-link>
+            </a>
           </SwiperSlide>
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
@@ -91,6 +91,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import { EffectCards, EffectFade, Pagination, Navigation, Autoplay } from 'swiper/modules'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -101,27 +103,36 @@ import 'swiper/swiper-bundle.css'
 export default {
   data () {
     return {
+      combinedArticleData: [],
+      articleApi: [],
       articleData: [
         {
-          title: '疫情期間，癌症化療病人尿不出來又怕掛急診染疫，怎麼辦？',
+          // title: '疫情期間，癌症化療病人尿不出來又怕掛急診染疫，怎麼辦？',
           video: true,
           tags: ['不分癌', '常見治療問題', '常見問題'],
-          img: 'https://picsum.photos/768/432',
-          href: '/article-1'
+          img: 'https://picsum.photos/768/432'
+          // href: '/article-1'
         },
         {
-          title: '容易暈車怎麼辦？3招有效自救方式',
+          // title: '容易暈車怎麼辦？3招有效自救方式',
           video: false,
           tags: ['預防', '暈車'],
-          img: 'https://picsum.photos/768/432',
-          href: '/article-2'
+          img: 'https://picsum.photos/768/432'
+          // href: '/article-2'
         },
         {
-          title: '柑橘防癌、抗發炎，大吉大利養生法一次看',
+          // title: '容易暈車怎麼辦？3招有效自救方式',
+          video: false,
+          tags: ['預防', '暈車'],
+          img: 'https://picsum.photos/768/432'
+          // href: '/article-2'
+        },
+        {
+          // title: '柑橘防癌、抗發炎，大吉大利養生法一次看',
           video: true,
           tags: ['防癌', '抗發炎'],
-          img: 'https://picsum.photos/768/432',
-          href: '/article-3'
+          img: 'https://picsum.photos/768/432'
+          // href: '/article-3'
         }
       ]
     }
@@ -130,13 +141,46 @@ export default {
     Swiper,
     SwiperSlide
   },
+  computed: {
+
+  },
+  created () {
+    this.fetchArticleData()
+  },
   mounted () {
     // 驗證 $refs 是否正確
     console.log('$refs', this.$refs)
     console.log('swiperCard', this.$refs.swiperCard)
   },
   methods: {
+    async fetchArticleData () {
+      try {
+        // TODO: apiKey env
+        const response = await axios.get('https://newsapi.org/v2/top-headlines/sources', {
+          params: {
+            apiKey: 'apiKey',
+            country: 'ca'
+          }
+        })
+        console.table('response:', response.data.sources)
+        this.articleApi = response.data.sources.map((article, index) => ({
+          title: article.description,
+          href: article.url
+        }))
 
+        // console.table('Api', this.articleApi)
+        // console.table('Data', this.articleData)
+
+        // // 合併兩個陣列
+        this.combinedArticleData = this.articleData.map((data, index) => ({
+          ...data,
+          ...this.articleApi[index]
+        }))
+        // console.table('combinedData', this.combinedArticleData)
+      } catch (error) {
+        console.error('Error fetching news:', error)
+      }
+    }
   },
   setup () {
     const onSwiper = (swiper) => {

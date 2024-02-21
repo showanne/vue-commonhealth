@@ -99,11 +99,17 @@
     line-height: lineHeight(28px, 42px);  
     letter-spacing: 0.01em;
     text-align: left;
-    @include padding(16px, null, 48px, null);
+    // 限 3 行
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    @include padding(16px, null, null, null);
+    @include margin(null, null, 48px, null);
     @include media-breakpoint-up(md) {
       font-size: 32px;
       line-height: lineHeight(32px, 48px);
-      padding-bottom: 96px;
+      margin-bottom: 96px;
     }
   }
   &-link {

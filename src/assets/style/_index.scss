@@ -17,10 +17,11 @@
 }
 
 .swiperBanner {
-  background-color: #F9F8F7;
+  @include color(#F7F7F7, null);
   @include padding(32px, null);
   margin-bottom: 40px;
   @include media-breakpoint-up(md) {
+    @include color(#F9F8F7, null);
     @include padding(64px, null);
     margin-bottom: 64px;
   }
@@ -29,6 +30,9 @@
 .swiper {
   &.swiper-cards {
     width: 87%;
+    @include media-breakpoint-down(md) {
+      margin-bottom: 16px;
+    }
   }
   &-slide {
     border-radius: 12px;

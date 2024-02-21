@@ -10,7 +10,7 @@
     <router-link to="/about">About</router-link>
   </nav> -->
   <router-view/>
-  <div class="container bg-dark vh-100"></div>
+  <div class="container bg-dark"></div>
 </template>
 
 <script>
@@ -29,5 +29,10 @@ export default {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.container {
+  &.bg-dark {
+    height: 300vh;
+  }
 }
 </style>

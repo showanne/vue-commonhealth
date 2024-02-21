@@ -1,6 +1,6 @@
 <template>
   <!-- header -->
-  <nav id="header"  ref="header" class="navbar navbar-light bg-white" :class="{ 'hide': isHidden ,'fixed-top': isActive }" @click="headerToggle">
+  <nav id="header"  ref="header" class="navbar navbar-light bg-info" :class="{ 'hide': isHidden ,'fixed-top': isActive }" @click="headerToggle">
     <div class="container fluid-xl">
       <!-- 選單 -->
       <button type="button" class="navbar-toggler collapsed" :class="{ 'hide': isHidden }" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
           <span class="line bottom"></span>
         </div>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="nav">
+      <div class="collapse navbar-collapse justify-content-end" :class="{ 'hide': isHidden }" id="nav">
         <div class="navbar-nav">
           <router-link to="/ad" class="d-md-block d-none">
             <img src="https://fakeimg.pl/327x82/CCC?text=Nav_AD" class="img-fluid m-auto rounded-sm" alt="Nav_AD">
@@ -24,8 +24,8 @@
       </div>
 
       <!-- logo -->
-      <div class="d-flex mr-auto">
-        <router-link to="/" class="navbar-brand ml-4" :class="{ 'hide': isHidden }">
+      <div class="d-flex mr-auto" :class="{ 'hide': isHidden }">
+        <router-link to="/" class="navbar-brand ml-4">
           <img src="https://fakeimg.pl/136x29/CCC?text=logo" class="d-md-none d-block" alt="logo">
           <img src="https://fakeimg.pl/200x48/CCC?text=logo" class="d-md-block d-none" alt="logo">
         </router-link>
@@ -35,7 +35,7 @@
       </div>
 
       <!-- 搜尋 -->
-      <form class="form-inline navbar-search" v-show="isHidden">
+      <form class="form-inline navbar-search" :class="{ 'active': isSearch }" v-show="isHidden" action="/search">
         <div class="input-group">
           <select class="custom-select" name="category">
           <option selected>全部</option>
@@ -47,9 +47,14 @@
           <option value="6">特色內容</option>
           <option value="7">知識庫</option>
           </select>
-          <input type="search" class="form-control" aria-label="請輸入關鍵字" placeholder="請輸入關鍵字">
-          <div class="input-group-append">
+          <input type="search" class="form-control" aria-label="請輸入關鍵字" placeholder="請輸入關鍵字" name="key" v-show="isSearch">
+          <div class="input-group-append" v-show="isSearch">
             <button class="btn btn-outline-light" type="submit">
+              <img src="../assets/image/Union.svg" alt="">
+            </button>
+          </div>
+          <div class="input-group-append" v-if="!isSearch">
+            <button class="btn btn-outline-light" type="button" @click="searchBarToggle">
               <img src="../assets/image/Union.svg" alt="">
             </button>
           </div>
@@ -61,7 +66,7 @@
         <p class="d-md-block d-none ml-5 mr-3 pt-3">會員限定</p>
         <button type="button" class="btn btn-outline-secondary" :class="{ 'hide': isHidden }">登入</button>
         <button type="button" class="btn btn-secondary ml-2 d-md-block d-none">加入會員</button>
-        <button type="button" class="btn btn-success ml-3 d-md-none" v-show="isHidden">加入 Line</button>
+        <button type="button" class="btn btn-success d-md-none" v-show="isHidden" v-if="!isSearch">加入 Line</button>
       </div>
     </div>
   </nav>
@@ -79,8 +84,11 @@ export default {
   },
   data () {
     return {
+      windowWidth: window.innerWidth,
+      lastScrollTop: 0,
       isHidden: false,
       isActive: true,
+      isSearch: false,
       menuData: [
         {
           text: '健康焦點',
@@ -265,18 +273,23 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('resize', this.handleResize)
   },
   beforeUnmount () {
     window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    handleResize () {
+      this.windowWidth = window.innerWidth
+    },
     // NOTE: header 手機版 2種狀態
     // 1. 初始：選單+logo+登入按鈕
     //          選單展開時，不能滑動頁面，並且希望 header 及選單可以占滿視窗
     // 2. 下滑後：篩選列+加入line按鈕
     //           篩選列點擊後，會展開輸入關鍵字的輸入框
     headerToggle () {
-      if (window.innerWidth > 768) {
+      if (this.windowWidth > 768) {
         // header 選單展開時背景不滑動
         this.$refs.header.classList.toggle('overflow-hidden')
         // header 選單 手機版收合效果
@@ -286,15 +299,26 @@ export default {
         // dte
       }
     },
+    searchBarToggle () {
+      if (this.windowWidth > 768) {
+        // search 正常狀態
+      } else {
+        this.isSearch = true
+      }
+    },
     handleScroll () {
-      if (window.innerWidth > 768) {
+      const scrollTop = document.documentElement.scrollTop
+
+      if (this.windowWidth > 768) {
         this.isHidden = true
       } else {
-        if (window.pageYOffset > 50) {
+        if (scrollTop > this.lastScrollTop) {
           this.isHidden = true
-        } else {
+        } else if (scrollTop < this.lastScrollTop) {
           this.isHidden = false
         }
+
+        this.lastScrollTop = scrollTop
       }
     }
   }

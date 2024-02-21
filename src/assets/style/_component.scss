@@ -162,15 +162,38 @@ a {
       .form-control {
         border-right-width: 0;
         border-left-width: 0;
+        @include padding(null, 8px);        
+        @include media-breakpoint-up(md) {
+          @include padding(null, 12px);
+        }
         &::placeholder {
           color: #B7B7B7;
         }
       }
       .input-group-append {
       }
-      button[type="submit"] {
+      button {
+        @include color($white, null);
         @include padding(6px, 12px);
         border-left-width: 0;
+        &[type="submit"]{
+
+        }
+        &[type="button"] {
+          max-width: calc(100% - 122px);
+        }
+      }
+      @media (max-width: 359px) {
+        .input-group {
+          flex-wrap: nowrap;
+          &::before {
+            left: 90px;
+          }
+        }  
+        .custom-select {
+          width: 90px;
+          max-width: 122px;
+        }
       }
     }
     &-btn {
@@ -191,6 +214,12 @@ a {
         }
         &:nth-child(4) {
           @include button-variant($success, $white);
+          margin-left: 16px;
+          @media (max-width: 359px) {
+            margin-left: 8px;
+            font-size: 12px;
+            width: 60px;
+          }
         }
       }
     }
@@ -199,10 +228,21 @@ a {
     &.hide {
       // top: -60px;
       transform: all 1s ease-in;
+      & > .container {
+        justify-content: center;
+      }
       .hide {
         display: none;
         transform: translateY(-100px);
+        & > * {
+          display: none;
+        }
       }
+    }
+    &.active {
+      &-search {
+        max-width: calc(100% - 18px - 18px);
+      }  
     }
   }
 }

@@ -273,7 +273,7 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
-    window.addEventListener('scroll', this.searchBarToggle)
+    // window.addEventListener('scroll', this.searchBarToggle)
     window.addEventListener('resize', this.handleResize)
     window.addEventListener('resize', this.searchBarToggle)
   },
@@ -305,7 +305,7 @@ export default {
       console.log('searchBarToggle')
       if (this.windowWidth > 768) {
         // search 正常狀態
-        // this.isSearch = true
+        this.isSearch = true
       } else {
         console.log(this.isSearch)
         if (this.isSearch === false) {
